@@ -1,13 +1,19 @@
 import './App.css';
+
+import { SismoConnectButton, AuthType,  SismoConnectConfig, SismoConnectResponse } from "@sismo-core/sismo-connect-react";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 import OverlayButton from './components/OverlayButton'
 import Sparkline from './components/Sparkline';
-import { SismoConnectButton, AuthType,  SismoConnectConfig, SismoConnectResponse } from "@sismo-core/sismo-connect-react";
+import SuccessPage from './components/SuccessPage';
+import RedirectButton from './components/RedirectButton';
+
 
 function App() {
 
   const sparklineData = [4, 4, 3.7, 4, 4, 4.5, 6, 6.4, 3, 5, 4.4];
   const config: SismoConnectConfig = {
-    appId: "0xf4977993e52606cfd67b7a1cde717069", 
+    appId: "0xf4977993e52606cfd67b7a1cde717069", // from demo
   }
 
 
@@ -31,10 +37,10 @@ function App() {
     // request multiple proofs of group membership 
     // (here the groups with id 0x42c768bb8ae79e4c5c05d3b51a4ec74a and 0x8b64c959a715c6b10aa8372100071ca7)
     claims={[
-        {groupId: "0x42c768bb8ae79e4c5c05d3b51a4ec74a"},
-        {groupId: "0x8b64c959a715c6b10aa8372100071ca7"}
+        {groupId: "0x6ff8115520098ee543deab1ab900384d"}, // own sismo group, only Daniel atm
+        //{groupId: "0x8b64c959a715c6b10aa8372100071ca7"}  // from demo ENS Domain
     ]}
-    signature={{message: "Your message"}}
+    signature={{message: "I accept to share my medical records with selected Clinical Trail party"}}
     onResponse={async (response: SismoConnectResponse) => {
 	//Send the response to your server to verify it
 	//thanks to the @sismo-core/sismo-connect-server package
@@ -167,53 +173,179 @@ function App() {
           {/* Right Side - Pharmaceutical Companies */}
 <div className="md:col-span-1">
   <div className="bg-white p-4 shadow-md rounded-md mb-4">
-    <h3 className="text-xl font-semibold mb-2">Participate in Medical Research and Claim Bounty</h3>
+    <h3 className="text-xl font-semibold mb-2">Participate in Medical Research and get rewarded</h3>
+    
     <div className="space-y-4">
-      {/* Pharma Company 1 */}
-      <div className="border p-4 rounded-md flex flex-col">
-        <h4 className="text-lg font-semibold mb-2">Bayer</h4>
-        <p className="text-sm">Interested in: HbA1C, CBR</p>
-        <p className="text-sm">Study: Diabetes Management</p>
-        <div className="flex justify-between py-4">
-        <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded self-start">
-        Decline
-      </button>
-      <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-3 rounded self-end">
-        Claim bounty
-      </button>
-    </div>
-      </div>
+          {/* Pharma Company 1 */}
+          <div className="border p-4 rounded-md flex flex-col relative">
+            <div className="absolute top-0 right-0 bg-blue-500 text-white px-2 py-1 rounded">
+              Survey only, $5 or donate
+            </div>
+            <div className="flex justify-between">
+              <h4 className="text-lg font-semibold py-5">Bayer</h4>
+              <div>
+                <p className="text-lg py-5">Interested in: Electrolytes, PLT</p>
+                <p className="text-lg py-0">Study: Diabetes Management</p>
+              </div>
+            </div>
+            <div className="flex justify-between py-4">
+              <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded">
+                Decline
+              </button>
+              <SismoConnectButton text='Apply for study' callbackUrl="http://localhost:3000/success"
+                
+// You can also create several auth and claim requests 
+// in the same button
+    config={config}
+    // request multiple proofs of account ownership 
+    // (here Vault ownership and Twitter account ownership)
+    auths={[
+        {authType: AuthType.VAULT},
+        {authType: AuthType.TWITTER},
+    ]}
+    // request multiple proofs of group membership 
+    // (here the groups with id 0x42c768bb8ae79e4c5c05d3b51a4ec74a and 0x8b64c959a715c6b10aa8372100071ca7)
+    claims={[
+      {groupId: "0x6ff8115520098ee543deab1ab900384d"}, // own sismo group, only Daniel atm
+      //{groupId: "0x8b64c959a715c6b10aa8372100071ca7"}  // from demo ENS Domain
+  ]}
+    signature={{message: "I accept to share my medical records with selected Clinical Trail party"}}
+    onResponse={async (response: SismoConnectResponse) => {
+	//Send the response to your server to verify it
+	//thanks to the @sismo-core/sismo-connect-server package
+    }}
+    onResponseBytes={async (bytes: string) => {
+        //Send the response to your contract to verify it
+        //thanks to the @sismo-core/sismo-connect-solidity package
+    }}
+/> 
+            </div>
+          </div>
+          {/* Pharma Company 2 */}
+          <div className="border p-4 rounded-md flex flex-col relative">
+            <div className="absolute top-0 right-0 bg-blue-500 text-white px-2 py-1 rounded">
+              9 weeks, $150/wk or donate
+            </div>
+            <div className="flex justify-between">
+              <h4 className="text-lg font-semibold py-5">ETH Zuerich (univ.)</h4>
+              <div>
+                <p className="text-lg py-5">Interested in: Electrolytes</p>
+                <p className="text-lg py-0">Study: Hypertension Treatment</p>
+              </div>
+            </div>
+            <div className="flex justify-between py-4">
+              <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded">
+                Decline
+              </button>
 
-      {/* Pharma Company 2 */}
-      <div className="border p-4 rounded-md flex flex-col">
-        <h4 className="text-lg font-semibold mb-2">Biontec</h4>
-        <p className="text-sm">Interested in: Blood Pressure</p>
-        <p className="text-sm">Study: Hypertension Treatment</p>
-        <div className="flex justify-between py-4">
-        <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded self-start">
-        Decline
-      </button>
-      <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-3 rounded self-end">
-        Claim bounty
-      </button>
-    </div>
-      </div>
+              <SismoConnectButton text='Apply for study' callbackUrl="http://localhost:3000/success"
+                
+// You can also create several auth and claim requests 
+// in the same button
+    config={config}
+    // request multiple proofs of account ownership 
+    // (here Vault ownership and Twitter account ownership)
+    auths={[
+        {authType: AuthType.VAULT},
+        {authType: AuthType.TWITTER},
+    ]}
+    // request multiple proofs of group membership 
+    // (here the groups with id 0x42c768bb8ae79e4c5c05d3b51a4ec74a and 0x8b64c959a715c6b10aa8372100071ca7)
+    //claims={[
+        //{groupId: "0x42c768bb8ae79e4c5c05d3b51a4ec74a"}, // from demo Merge part
+        //{groupId: "0x8b64c959a715c6b10aa8372100071ca7"}  // from demo ENS Domain
+    //]}
+    signature={{message: "I accept to share my medical records with selected Clinical Trail party"}}
+    onResponse={async (response: SismoConnectResponse) => {
+	//Send the response to your server to verify it
+	//thanks to the @sismo-core/sismo-connect-server package
+    }}
+    onResponseBytes={async (bytes: string) => {
+        //Send the response to your contract to verify it
+        //thanks to the @sismo-core/sismo-connect-solidity package
+    }}
+/> 
+              
+            </div>
+          </div>
+          {/* Pharma Company 3 */}
+          <div className="border p-4 rounded-md flex flex-col relative">
+            <div className="absolute top-0 right-0 bg-blue-500 text-white px-2 py-1 rounded">
+              7 weeks, $70/wk or donate
+            </div>
+            <div className="flex justify-between">
+              <h4 className="text-lg font-semibold py-5">Pfizer</h4>
+              <div>
+                <p className="text-lg py-5">Interested in: Electrolytes, CBC</p>
+                <p className="text-lg py-0">Study: Heart Health</p>
+              </div>
+            </div>
+            <div className="flex justify-between py-4">
+              <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded">
+                Decline
+              </button>
+              
 
-      {/* Pharma Company 3 */}
-      <div className="border p-4 rounded-md flex flex-col">
-        <h4 className="text-lg font-semibold mb-2">Pfizer</h4>
-        <p className="text-sm">Interested in: Cardiology Measure</p>
-        <p className="text-sm">Study: Heart Health</p>
-        <div className="flex justify-between py-4">
-        <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded self-start">
-        Decline
-      </button>
-      <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-3 rounded self-end">
-        Claim bounty
-      </button>
-    </div>
+  <SismoConnectButton text='Apply for study'
+                
+// You can also create several auth and claim requests 
+// in the same button
+    config={config}
+    // request multiple proofs of account ownership 
+    // (here Vault ownership and Twitter account ownership)
+    auths={[
+        {authType: AuthType.VAULT},
+        {authType: AuthType.TWITTER},
+    ]}
+    // request multiple proofs of group membership 
+    // (here the groups with id 0x42c768bb8ae79e4c5c05d3b51a4ec74a and 0x8b64c959a715c6b10aa8372100071ca7)
+    //claims={[
+        //{groupId: "0x42c768bb8ae79e4c5c05d3b51a4ec74a"}, // from demo Merge part
+        //{groupId: "0x8b64c959a715c6b10aa8372100071ca7"}  // from demo ENS Domain
+    //]}
+    signature={{message: "I accept to share my medical records with selected Clinical Trail party"}}
+    onResponse={async (response: SismoConnectResponse) => {
+	//Send the response to your server to verify it
+	//thanks to the @sismo-core/sismo-connect-server package
+    }}
+    onResponseBytes={async (bytes: string) => {
+        //Send the response to your contract to verify it
+        //thanks to the @sismo-core/sismo-connect-solidity package
+    }}
+/> 
+
+
+            </div>
+          </div>
+          {/* Add more pharma companies as needed */}
+        </div>
+    
+    
+
+    <Router>
+      <div>
+        <Switch>
+          <Route path="/success" component={SuccessPage} />
+          <Route path="/" exact>
+            <div className="min-h-screen flex items-center justify-center bg-gray-100">
+              <div className="max-w-md px-8 py-6 bg-white shadow-lg rounded-lg">
+                <div className="text-center">
+                  {/* Your content for the main page */}
+                  <h2 className="mt-2 text-xl font-semibold text-gray-800">
+                    Main Page
+                  </h2>
+                  <p className="text-gray-600">
+                    Your main page content goes here.
+                  </p>
+                </div>
+                <RedirectButton />
+              </div>
+            </div>
+          </Route>
+        </Switch>
       </div>
-    </div>
+    </Router>
+
   </div>
 </div>
         </div>
