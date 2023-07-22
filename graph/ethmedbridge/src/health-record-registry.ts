@@ -1,3 +1,4 @@
+import { Bytes, ipfs, json } from "@graphprotocol/graph-ts";
 import {
   Approval as ApprovalEvent,
   ApprovalForAll as ApprovalForAllEvent,
@@ -30,7 +31,43 @@ export function handleRecordRegistered(event: RecordRegisteredEvent): void {
     newRecordType.metadataURI = event.params.metadataURI;
   }
 
+  // Assign data from ipfs
+  newRecordType = assignIpfsValuesToRecordType(newRecordType);
+  
   newRecordType.save()
+}
+
+export function assignIpfsValuesToRecordType(recordType: RecordType): RecordType {
+  const content = ipfs.cat(recordType.metadataURI);
+  if (content === null) {
+    return recordType;
+  }
+  const data = json.fromBytes(content).toObject();
+
+  if (data) {
+    const name = data.get('name');
+    const description = data.get('description');
+    const unit = data.get('unit');
+
+    if (name) {
+      recordType.name = name.toString();
+    } else {
+      recordType.name = "Unknown";
+    }
+
+    if (description) {
+      recordType.description = description.toString();
+    } else { 
+      recordType.description = "Unknown";
+    }
+
+    if (unit) {
+      recordType.unit = unit.toString();
+    } else {
+      recordType.unit = "Unknown";
+    }
+  }
+  return recordType;
 }
 
 export function handleRecordIssued(event: RecordIssuedEvent): void {

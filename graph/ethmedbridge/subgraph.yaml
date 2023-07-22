@@ -1,4 +1,8 @@
 specVersion: 0.0.5
+description: Health Record Registry Subgraph
+repository: https://github.com/mDeisen/ethmedbridge
+features:
+  - ipfsOnEthereumContracts
 schema:
   file: ./schema.graphql
 dataSources:
@@ -38,7 +42,8 @@ dataSources:
           handler: handleApprovalForAll
         - event: OwnershipTransferred(indexed address,indexed address)
           handler: handleOwnershipTransferred
-
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer
+      # blockHandlers:
+      #   - filter: call TODO: Fix filter to only react on relevant blocks
       file: ./src/health-record-registry.ts

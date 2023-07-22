@@ -167,6 +167,45 @@ export class RecordType extends Entity {
     this.set("metadataURI", Value.fromString(value));
   }
 
+  get name(): string {
+    let value = this.get("name");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set name(value: string) {
+    this.set("name", Value.fromString(value));
+  }
+
+  get description(): string {
+    let value = this.get("description");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set description(value: string) {
+    this.set("description", Value.fromString(value));
+  }
+
+  get unit(): string {
+    let value = this.get("unit");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set unit(value: string) {
+    this.set("unit", Value.fromString(value));
+  }
+
   get records(): Array<Bytes> {
     let value = this.get("records");
     if (!value || value.kind == ValueKind.NULL) {
@@ -268,19 +307,6 @@ export class Record extends Entity {
 
   set value(value: BigInt) {
     this.set("value", Value.fromBigInt(value));
-  }
-
-  get metadataURI(): string {
-    let value = this.get("metadataURI");
-    if (!value || value.kind == ValueKind.NULL) {
-      throw new Error("Cannot return null for a required field.");
-    } else {
-      return value.toString();
-    }
-  }
-
-  set metadataURI(value: string) {
-    this.set("metadataURI", Value.fromString(value));
   }
 
   get blockNumber(): BigInt {

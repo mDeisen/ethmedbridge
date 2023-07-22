@@ -9,11 +9,14 @@ type RecordOwner @entity {
   records: [Record!]! @derivedFrom(field: "recordOwner")
 }
 
-type RecordType @entity {
+type RecordType @entity(immutable: true) {
   id: String! 
   #recTypeId: BigInt! # uint32 TODO: GenerateId during creation instead of via smart contract input
   #recordTypeCreator: RecordTypeCreator! TODO: Add relationship to issuer
   metadataURI: String! # string
+  name: String! # string Pull from IPFS
+  description: String! # string Pull from IPFS
+  unit: String! # string Pull from IPFS
   records: [Record!]! @derivedFrom(field: "recordType")
 }
 
