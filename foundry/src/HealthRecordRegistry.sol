@@ -10,11 +10,13 @@ struct Record {
     /// @dev URI to the metadata of the record.
     /// Contains: Name, Decription, Image (optional), MeasurementUnit
     string metadataURI;
+    // @dev The total amount of records issued.
+    uint16 totalIssued;
 }
 
 struct RecordData {
     address issuer;
-    uint32 recordTypeId;
+    uint16 recordTypeId;
     uint64 value;
 }
 /// @title HealthRecordRegistry
@@ -25,15 +27,14 @@ struct RecordData {
 /// implementation, access control for issuers & data gouvernance would
 /// be much more complex.
 contract HealthRecordRegistry is Ownable, ERC721 {
-
     event RecordRegistered(
-        uint32 indexed recordTypeId,
+        uint16 indexed recordTypeId,
         string metadataURI
     );
 
     event RecordIssued(
         address indexed issuer,
-        uint32 indexed recordId,
+        uint16 indexed recordId,
         uint64 value,
         address indexed recipient
     );
@@ -49,7 +50,7 @@ contract HealthRecordRegistry is Ownable, ERC721 {
     }
 
     /// @dev Modifier to check if a record is allowed.
-    modifier onlyAllowedRecords(uint32 recordId) {
+    modifier onlyAllowedRecords(uint16 recordId) {
         require(records[recordId].allowed, "HRR: record not allowed");
         _;
     }
@@ -57,13 +58,13 @@ contract HealthRecordRegistry is Ownable, ERC721 {
     //////////// ADMIN FUNCTIONS ////////////
 
     /// @dev Register a new record.
-    function registerNewRecord(uint32 _newRecordId, string memory _metadataURI) public onlyOwner {
-        records[_newRecordId] = Record(true,_metadataURI);
+    function registerNewRecord(uint16 _newRecordId, string memory _metadataURI) public onlyOwner {
+        records[_newRecordId] = Record(true,_metadataURI, 0);
 
         emit RecordRegistered(_newRecordId, _metadataURI);
     }
 
-    function disableRecord(uint32 _recordId) public onlyOwner {
+    function disableRecord(uint16 _recordId) public onlyOwner {
         records[_recordId].allowed = false;
     }
 
@@ -98,11 +99,15 @@ contract HealthRecordRegistry is Ownable, ERC721 {
         RecordData memory _record,
         address _recipient
     ) internal onlyAllowedRecords(_record.recordTypeId) {
+
         uint256 recordTokenId = _generateRecordId(
             _record.issuer,
+            records[_record.recordTypeId].totalIssued,
             _record.recordTypeId,
             _record.value
         );
+
+        records[_record.recordTypeId].totalIssued += 1;
         
         _safeMint(_recipient, recordTokenId);
 
@@ -115,11 +120,16 @@ contract HealthRecordRegistry is Ownable, ERC721 {
     }
 
     /// @dev Internal function to generate a record ID.
+    /// issuer: 160 bits
+    /// number: 16 bits
+    /// recordId: 16 bits
+    /// value: 64 bits
     function _generateRecordId(
         address _issuer,
-        uint32 _recordId,
+        uint16 _number,
+        uint16 _recordId,
         uint64 _value
     ) internal pure returns (uint256) {
-        return uint160(_issuer) << 96 | uint96(_recordId) << 64 | uint64(_value);
+        return uint160(_issuer) << 96 | uint96(_number) << 80 | uint80(_recordId) << 64 | _value;
     }
 }
