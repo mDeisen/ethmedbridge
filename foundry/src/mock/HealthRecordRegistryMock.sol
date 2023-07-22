@@ -11,9 +11,10 @@ contract HealthRecordRegistryMock is HealthRecordRegistry {
     // public version of generateRecordId
     function generateRecordId(
         address _issuer,
-        uint32 _recordId,
+        uint16 _number,
+        uint16 _recordId,
         uint64 _value
     ) public pure returns (uint256) {
-        return _generateRecordId(_issuer, _recordId, _value);
+        return _generateRecordId(_issuer, _number, _recordId, _value);
     }
 }

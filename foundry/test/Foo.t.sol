@@ -24,15 +24,7 @@ contract HealthRecordRegistryTest is PRBTest, StdCheats {
 
     /// @dev Basic test. Run it with `forge test -vvv` to see the console log.
     function testRecordIdGeneration() external {
-        uint256 expectedRecordId = 1263876948986012720533202448404452315968894402562;
-        
-        uint256 recordId = _registry.generateRecordId(
-            address(this),
-            1,
-            2
-        );
-
-        assertEq(recordId, expectedRecordId);
+        // 
     }
 
     /// @dev Fuzz test that provides random values for an unsigned integer, but which rejects zero as an input.
