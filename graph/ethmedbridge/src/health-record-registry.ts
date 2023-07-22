@@ -24,7 +24,12 @@ export function handleRecordRegistered(event: RecordRegisteredEvent): void {
     event.params.recordTypeId.toString() // TODO: Change in contract to autogenerate Ids instead of passing as parameter
   )
   // newRecordType.recordTypeOwner = event.; // TODO: Add for future updating/admin of record types
-  newRecordType.metadataURI = event.params.metadataURI;
+  if (event.params.metadataURI == null) {
+    newRecordType.metadataURI = "TBD"; // TODO: Change in contract to make metadataURI required 
+  } else {
+    newRecordType.metadataURI = event.params.metadataURI;
+  }
+
   newRecordType.save()
 }
 

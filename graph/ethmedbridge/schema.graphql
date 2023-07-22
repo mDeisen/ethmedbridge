@@ -23,11 +23,9 @@ type Record @entity {
   recordOwner: RecordOwner!
   recordType: RecordType!
   value: BigInt! # uint64
-  metadataURI: String! # string
   blockNumber: BigInt!
   blockTimestamp: BigInt!
 }
-
 
 
 type Approval @entity(immutable: true) {
@@ -62,7 +60,7 @@ type OwnershipTransferred @entity(immutable: true) {
 type RecordIssued @entity(immutable: true) {
   id: Bytes!
   issuer: Bytes! # address
-  recordId: BigInt! # uint32
+  recordId: BigInt! # uint32 -- RecordTypeId
   value: BigInt! # uint64
   recipient: Bytes! # address
   blockNumber: BigInt!
@@ -88,4 +86,3 @@ type Transfer @entity(immutable: true) {
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
-

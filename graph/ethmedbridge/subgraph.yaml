@@ -6,9 +6,9 @@ dataSources:
     name: HealthRecordRegistry
     network: goerli
     source:
-      address: "0xD13E4C2Fa84Dd5eA1d4c8326b9ABbD582D79F309"
+      address: "0x5a2EbDEb26aAADBefBaC05AAc21e19e268D3CF6A"
       abi: HealthRecordRegistry
-      startBlock: 9387538
+      startBlock: 9387851
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
