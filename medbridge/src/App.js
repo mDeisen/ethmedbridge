@@ -66,9 +66,9 @@ function App() {
       </header>
 
       <main className="container mx-auto mt-8 p-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 gap-4 justify-items-center">
           {/* Left Side - Medical Records */}
-          <div className="md:col-span-2">
+          <div >
             <h2 className="text-xl font-semibold mb-4 text-left">
               Welcome, Vitalik!
             </h2>
