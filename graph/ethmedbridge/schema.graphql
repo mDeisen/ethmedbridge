@@ -1,0 +1,91 @@
+type Issuer @entity {
+  id: Bytes!
+  records: [Record!]! @derivedFrom(field: "issuer")
+  # Add relationship to patients
+}
+
+type RecordOwner @entity {
+  id: Bytes!
+  records: [Record!]! @derivedFrom(field: "recordOwner")
+}
+
+type RecordType @entity {
+  id: String! 
+  #recTypeId: BigInt! # uint32 TODO: GenerateId during creation instead of via smart contract input
+  #recordTypeCreator: RecordTypeCreator! TODO: Add relationship to issuer
+  metadataURI: String! # string
+  records: [Record!]! @derivedFrom(field: "recordType")
+}
+
+type Record @entity {
+  id: Bytes! # uint32
+  issuer: Issuer!
+  recordOwner: RecordOwner!
+  recordType: RecordType!
+  value: BigInt! # uint64
+  metadataURI: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+}
+
+
+
+type Approval @entity(immutable: true) {
+  id: Bytes!
+  owner: Bytes! # address
+  approved: Bytes! # address
+  tokenId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ApprovalForAll @entity(immutable: true) {
+  id: Bytes!
+  owner: Bytes! # address
+  operator: Bytes! # address
+  approved: Boolean! # bool
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type OwnershipTransferred @entity(immutable: true) {
+  id: Bytes!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type RecordIssued @entity(immutable: true) {
+  id: Bytes!
+  issuer: Bytes! # address
+  recordId: BigInt! # uint32
+  value: BigInt! # uint64
+  recipient: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type RecordRegistered @entity(immutable: true) {
+  id: Bytes!
+  recordTypeId: BigInt! # uint32
+  metadataURI: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Transfer @entity(immutable: true) {
+  id: Bytes!
+  from: Bytes! # address
+  to: Bytes! # address
+  tokenId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+

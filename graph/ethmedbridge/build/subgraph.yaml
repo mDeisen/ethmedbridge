@@ -1,0 +1,43 @@
+specVersion: 0.0.5
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: HealthRecordRegistry
+    network: goerli
+    source:
+      address: "0xD13E4C2Fa84Dd5eA1d4c8326b9ABbD582D79F309"
+      abi: HealthRecordRegistry
+      startBlock: 9387538
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - ApprovalForAll
+        - OwnershipTransferred
+        - RecordIssued
+        - RecordRegistered
+        - Transfer
+        - Issuer
+        - RecordOwner
+        - RecordType
+        - Record
+      abis:
+        - name: HealthRecordRegistry
+          file: HealthRecordRegistry/abis/HealthRecordRegistry.json
+      eventHandlers:
+        - event: RecordIssued(indexed address,indexed uint32,uint64,indexed address)
+          handler: handleRecordIssued
+        - event: RecordRegistered(indexed uint32,string)
+          handler: handleRecordRegistered
+        - event: Approval(indexed address,indexed address,indexed uint256)
+          handler: handleApproval
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+      file: HealthRecordRegistry/HealthRecordRegistry.wasm

@@ -1,0 +1,8 @@
+{
+  "goerli": {
+    "HealthRecordRegistry": {
+      "address": "0xD13E4C2Fa84Dd5eA1d4c8326b9ABbD582D79F309",
+      "startBlock": 9387538
+    }
+  }
+}
