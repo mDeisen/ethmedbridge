@@ -11,7 +11,7 @@ const OverlayButton = () => {
   return (
     <div>
       <button
-        className="bg-green-500 text-white px-4 py-2 rounded"
+        className="bg-teal-700 text-white px-4 py-2 rounded"
         onClick={toggleOverlay}
       >
         QR
@@ -21,6 +21,7 @@ const OverlayButton = () => {
           {/* Replace 'imageUrl' with the actual URL of the picture */}
           <img
             src="/assets/QR.png"
+            
             alt="Overlay Picture"
             className="max-w-80vw max-h-80vh"
           />
