@@ -93,7 +93,7 @@ function App() {
           </div>
 
               <div>
-                <p className="text-sm">3.4</p>
+                <p className="text-sm">3.5</p>
                 <p className="text-sm">54</p>
                 <p className="text-sm">150</p>
                 <p className="text-sm">3.9</p>

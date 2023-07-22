@@ -16,13 +16,12 @@ const SuccessPage = () => {
           </svg>
           <h2 className="mt-2 text-xl font-semibold text-gray-800">Success!</h2>
           <p className="text-gray-600">
-            Patient records have been shared with the clinical trial counterparty.
-            The clinical trial counterparty has paid the sharer of the information.
-            The payout is done to the wallet of the Sismo wallet owner.
+            Thank you for submitting your medical records. Please submit your ZK proof by contacting our Lead Clinical Trial research team.
+            Thank you for using Sismo.
           </p>
         </div>
         <div className="mt-6">
-          <h3 className="text-lg font-semibold">Clinical Trial Legal Text:</h3>
+          <h3 className="text-lg font-semibold">Terms and Conditions</h3>
           <div className="max-h-48 overflow-y-auto p-2 border border-gray-300 rounded">
             <div className="text-sm">
               <div className="mb-4">
@@ -48,10 +47,12 @@ const SuccessPage = () => {
         <div className="mt-6">
           <h3 className="text-lg font-semibold">Contact Information of Study Director:</h3>
           <div className="text-sm">
-            <p className="mb-1">Name: John Doe</p>
-            <p className="mb-1">Email: john.doe@example.com</p>
-            <p className="mb-1">Phone: +1 (555) 123-4567</p>
-            <p className="mb-1">Address: 123 Clinical Trial Avenue, City, Country</p>
+            <p className="mb-1">Bayer AG, Leverkusen, Germany</p>
+            <p className="mb-1">Sarena Lin, Wolfgang Nickl, Stefan Oelrich, Rodrigo Santos, Heiko Schipper</p>
+            <p className="mb-1">Tel.: +49 (0)214 30-1</p>
+            <p className="mb-1">Kaiser-Wilhelm-Allee 1</p>
+            <p className="mb-1">51373 Leverkusen, Germany</p>
+            <p className="mb-1">E-mail: Inquiries can be sent to info@bayer.com or using our contact form.</p>
           </div>
         </div>
       </div>
