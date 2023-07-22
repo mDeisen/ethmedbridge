@@ -19,18 +19,7 @@ const config: SismoConnectConfig = {
   },
 };
 
-export default function TestPage() {
-
-  const { response } = useSismoConnect({config});
-
-  useEffect(() => {
-    if (response) {
-      console.log("response", response);
-    } else {
-      console.log("no response");
-    }
-  }, [response]);
-    
+export default function Apply() {
   return (
     <main className={styles.main}>
       <div className={styles.center}>
@@ -48,15 +37,7 @@ export default function TestPage() {
             message:
               "I accept to share my medical records with selected Clinical Trail party",
           }}
-          // onResponse={async (response: SismoConnectResponse) => {
-          //   console.log("SismoConnectResponse", response);
-          //   const res = await fetch("http://localhost:3001/api/verify", {
-          //     method: "POST",
-          //     body: JSON.stringify(response),
-          //   });
-          //   console.log(await res.json());
-          // }}
-          // callbackPath=""
+          callbackUrl="https://ethmedbridge-api.vercel.app/apply/verify"
         />
       </div>
     </main>
