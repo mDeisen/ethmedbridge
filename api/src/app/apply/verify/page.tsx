@@ -36,7 +36,7 @@ export default function VerifyPage() {
   return (
     <main className={styles.main}>
       <div className={styles.center}>
-        {verified ? <div>Verified!</div> : "Verifying..."}
+        {verified ? <div>Verified! ✅</div> : "Verifying..."}
       </div>
     </main>
   );

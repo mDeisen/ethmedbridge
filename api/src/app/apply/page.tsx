@@ -42,6 +42,7 @@ export default function Apply() {
           config={config}
           auths={[{ authType: AuthType.VAULT }]}
           claims={[
+            { groupId: "0x39a1c669293ad8224469a8197d67be7c" }, // Worldcoin
             {
               groupId: "0x8647f518b0dad075555269ff5a48c362",
               value: 600000,
