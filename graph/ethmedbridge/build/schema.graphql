@@ -9,6 +9,15 @@ type RecordOwner @entity {
   records: [Record!]! @derivedFrom(field: "recordOwner")
 }
 
+
+type _Schema_
+  @fulltext(
+    name: "recordTypeSearch"
+    language: en
+    algorithm: rank
+    include: [{ entity: "RecordType", fields: [{ name: "name" }, { name: "description" }, { name: "unit" }] }]
+  )
+
 type RecordType @entity(immutable: true) {
   id: String! 
   #recTypeId: BigInt! # uint32 TODO: GenerateId during creation instead of via smart contract input

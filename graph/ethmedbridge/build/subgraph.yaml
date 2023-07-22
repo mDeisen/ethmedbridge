@@ -3,6 +3,7 @@ description: Health Record Registry Subgraph
 repository: https://github.com/mDeisen/ethmedbridge
 features:
   - ipfsOnEthereumContracts
+  - fullTextSearch
 schema:
   file: schema.graphql
 dataSources:
