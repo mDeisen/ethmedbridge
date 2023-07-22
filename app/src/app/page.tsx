@@ -10,8 +10,8 @@ import {
 } from "@sismo-core/sismo-connect-react";
 import classNames from "classnames";
 
-import OverlayButton from "../components/OverlayButton";
-import Sparkline from "../components/Sparkline";
+import OverlayButton from "./components/OverlayButton";
+import Sparkline from "./components/Sparkline";
 
 /*
  * Basic test page is used to apply for a clinical trial.
@@ -188,7 +188,6 @@ export default function App() {
 
               <SismoConnectButton
                 text="Apply for study"
-                callbackUrl="http://localhost:3000/success"
                 // You can also create several auth and claim requests
                 // in the same button
                 config={config}
