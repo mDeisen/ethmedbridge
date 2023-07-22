@@ -9,8 +9,7 @@ import { useSismoConnect } from "@sismo-core/sismo-connect-react";
 export default function VerifyPage() {
   const { response } = useSismoConnect({ config });
   const jsonRes = response ? JSON.stringify(response) : null;
-
-  // TODO useState verified
+  
   const [verified, setVerified] = useState(false);
 
   useEffect(() => {
