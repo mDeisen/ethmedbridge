@@ -1,11 +1,7 @@
 import { Bytes, ipfs, json } from "@graphprotocol/graph-ts";
 import {
-  Approval as ApprovalEvent,
-  ApprovalForAll as ApprovalForAllEvent,
-  OwnershipTransferred as OwnershipTransferredEvent,
   RecordIssued as RecordIssuedEvent,
   RecordRegistered as RecordRegisteredEvent,
-  Transfer as TransferEvent
 } from "../generated/HealthRecordRegistry/HealthRecordRegistry"
 import {
   Issuer,

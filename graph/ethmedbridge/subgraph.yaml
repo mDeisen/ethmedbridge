@@ -33,5 +33,7 @@ dataSources:
         - event: RecordRegistered(indexed uint16,string)
           handler: handleRecordRegistered
       # blockHandlers:
-      #   - filter: call TODO: Fix filter to only react on relevant blocks
+      #   - handler: handleBlockWithCallToContract
+      #     filter: 
+      #       kind: call
       file: ./src/health-record-registry.ts
