@@ -22,12 +22,12 @@ contract HealthRecordRegistry is Ownable, ERC721 {
 
     struct RecordData {
         address issuer;
-        uint32 recordId;
+        uint32 recordTypeId;
         uint64 value;
     }
 
     event RecordRegistered(
-        uint32 indexed recordId,
+        uint32 indexed recordTypeId,
         string metadataURI
     );
 
@@ -97,18 +97,18 @@ contract HealthRecordRegistry is Ownable, ERC721 {
     function _issueRecord(
         RecordData memory _record,
         address _recipient
-    ) internal onlyAllowedRecords(_record.recordId) {
-        uint256 recordId = _generateRecordId(
+    ) internal onlyAllowedRecords(_record.recordTypeId) {
+        uint256 recordTokenId = _generateRecordId(
             _record.issuer,
-            _record.recordId,
+            _record.recordTypeId,
             _record.value
         );
         
-        _safeMint(_recipient, recordId);
+        _safeMint(_recipient, recordTokenId);
 
         emit RecordIssued(
             _record.issuer,
-            _record.recordId,
+            _record.recordTypeId,
             _record.value,
             _recipient
         );
