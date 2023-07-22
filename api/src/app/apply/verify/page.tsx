@@ -37,6 +37,7 @@ export default function VerifyPage() {
       });
 
       console.log("Proof verified\n", await res.json());
+      setVerified(true);
     }
 
     void verify();
