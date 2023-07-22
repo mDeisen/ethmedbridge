@@ -1,19 +1,10 @@
 "use client";
 
+import { config } from "@/app/utils/config";
 import { useEffect, useState } from "react";
 import styles from "../../page.module.css";
 
-import {
-  SismoConnectConfig,
-  useSismoConnect,
-} from "@sismo-core/sismo-connect-react";
-
-const config: SismoConnectConfig = {
-  appId: "0xa9618c35dc1234d69610cf92e08ae285",
-  vault: {
-    impersonate: ["adibou.eth"],
-  },
-};
+import { useSismoConnect } from "@sismo-core/sismo-connect-react";
 
 export default function VerifyPage() {
   const { response } = useSismoConnect({ config });
@@ -45,7 +36,9 @@ export default function VerifyPage() {
 
   return (
     <main className={styles.main}>
-      <div className={styles.center}>{verified ? "Verified!" : "Verifying..."}</div>
+      <div className={styles.center}>
+        {verified ? <div>Verified!</div> : "Verifying..."}
+      </div>
     </main>
   );
 }

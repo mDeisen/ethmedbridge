@@ -1,3 +1,4 @@
+import { config } from "@/app/utils/config";
 import {
   AuthType,
   ClaimType,
@@ -5,15 +6,10 @@ import {
   SismoConnectVerifiedResult,
 } from "@sismo-core/sismo-connect-server";
 
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 const sismoConnect = SismoConnect({
-  config: {
-    appId: "0x8223adf82bed240bcd5e4007806916c4",
-    vault: {
-      impersonate: ["adibou.eth"],
-    },
-  },
+  config,
 });
 
 const auths = [{ authType: AuthType.VAULT }];

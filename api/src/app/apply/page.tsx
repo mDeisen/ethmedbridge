@@ -1,23 +1,13 @@
 "use client";
 
-import React, { useEffect } from "react";
+import { config } from "@/app/utils/config";
 import styles from "../page.module.css";
 
 import {
-  SismoConnectButton,
   AuthType,
-  SismoConnectConfig,
-  SismoConnectResponse,
   ClaimType,
-  useSismoConnect,
+  SismoConnectButton,
 } from "@sismo-core/sismo-connect-react";
-
-const config: SismoConnectConfig = {
-  appId: "0x8223adf82bed240bcd5e4007806916c4",
-  vault: {
-    impersonate: ["adibou.eth"],
-  },
-};
 
 export default function Apply() {
   // const { response } = useSismoConnect({ config });
