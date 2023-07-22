@@ -65,10 +65,10 @@ function App() {
         <OverlayButton />
       </header>
 
-      <main className="container mx-auto mt-8 p-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <main className="container mx-auto mt-8 p-4 items-center justify-center">
+        <div className="grid grid-cols-1 gap-4 justify-items-center">
           {/* Left Side - Medical Records */}
-          <div className="md:col-span-2">
+          <div >
             <h2 className="text-xl font-semibold mb-4 text-left">
               Welcome, Vitalik!
             </h2>
@@ -150,16 +150,15 @@ function App() {
               </div>
             </div>
           </div>
-
           <div className="bg-white p-4 rounded-md shadow-md">
-            <h3 className="text-lg font-semibold border-b border-gray-300 pb-2 text-left">
-              RBC Visualization
-            </h3>
+  <h3 className="text-lg font-semibold border-b border-gray-300 pb-2 text-left">
+    RBC Visualization
+  </h3>
+  <div>
+    <Sparkline data={sparklineData} />
+  </div>
+</div>
 
-            <div>
-              <Sparkline data={sparklineData} />
-            </div>
-          </div>
 
           {/* Right Side - Pharmaceutical Companies */}
           <div className="md:col-span-1">
