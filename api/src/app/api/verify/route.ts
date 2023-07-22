@@ -9,7 +9,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const sismoConnect = SismoConnect({
   config: {
-    appId: "0xa9618c35dc1234d69610cf92e08ae285",
+    appId: "0x8223adf82bed240bcd5e4007806916c4",
     vault: {
       impersonate: ["adibou.eth"],
     },
@@ -45,7 +45,7 @@ export async function POST(req: Request) {
     );
 
     const vault = result.getUserIds(AuthType.VAULT);
-    
+
     return NextResponse.json(
       { ok: true, vault, researcherAddress: "researcher.xmtp.eth" },
       { status: 200 }

@@ -1,14 +1,10 @@
 "use client";
 
-import React, { useEffect } from "react";
-import styles from "../page.module.css";
+import { useEffect, useState } from "react";
+import styles from "../../page.module.css";
 
 import {
-  SismoConnectButton,
-  AuthType,
   SismoConnectConfig,
-  SismoConnectResponse,
-  ClaimType,
   useSismoConnect,
 } from "@sismo-core/sismo-connect-react";
 
@@ -21,32 +17,34 @@ const config: SismoConnectConfig = {
 
 export default function VerifyPage() {
   const { response } = useSismoConnect({ config });
+  const jsonRes = response ? JSON.stringify(response) : null;
 
   // TODO useState verified
+  const [verified, setVerified] = useState(false);
 
   useEffect(() => {
     async function verify() {
-      if (!response) {
+      if (!jsonRes) {
         console.log("no response");
         return;
       }
 
-      console.log("SismoConnectResponse\n", response);
+      console.log("SismoConnectResponse\n", jsonRes);
 
       const res = await fetch("/api/verify", {
         method: "POST",
-        body: JSON.stringify(response),
+        body: jsonRes,
       });
 
       console.log("Proof verified\n", await res.json());
     }
 
     void verify();
-  }, [response]);
+  }, [jsonRes]);
 
   return (
     <main className={styles.main}>
-      <div className={styles.center}>Verifying...</div>
+      <div className={styles.center}>{verified ? "Verified!" : "Verifying..."}</div>
     </main>
   );
 }
