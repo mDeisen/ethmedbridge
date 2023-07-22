@@ -14,7 +14,7 @@ const OverlayButton = () => {
         className="bg-green-500 text-white px-4 py-2 rounded"
         onClick={toggleOverlay}
       >
-        Show QR code (Address)
+        QR
       </button>
       {showOverlay && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-75">
