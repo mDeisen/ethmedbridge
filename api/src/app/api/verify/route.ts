@@ -44,7 +44,11 @@ export async function POST(req: Request) {
     const vault = result.getUserIds(AuthType.VAULT);
 
     return NextResponse.json(
-      { ok: true, vault, researcherAddress: "researcher.xmtp.eth" },
+      {
+        ok: true,
+        vault,
+        researcherAddress: "0xD0C7D352c78FE4A5C8E93A4782B353c6d87E9c8B",
+      },
       { status: 200 }
     );
   } catch (e: any) {

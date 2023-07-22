@@ -3,8 +3,7 @@ import "./App.css";
 import {
   SismoConnectButton,
   AuthType,
-  SismoConnectConfig,
-  SismoConnectResponse,
+  ClaimType,
 } from "@sismo-core/sismo-connect-react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import classNames from "classnames";
@@ -18,38 +17,17 @@ function App() {
   let isAlert = false;
   const sparklineData = [4, 4, 3.7, 4, 4, 4.5, 6, 6.4, 3, 5, 4.4];
   const config = {
-    appId: "0xf4977993e52606cfd67b7a1cde717069", // from demo
+    appId: "0x8223adf82bed240bcd5e4007806916c4",
+    vault: {
+      impersonate: ["adibou.eth", "0xD0C7D352c78FE4A5C8E93A4782B353c6d87E9c8B"],
+    },
   };
 
   return (
     <div className="w-full relative min-h-screen">
-      <div className="w-full flex flex-row justify-between p-4 border items-center">
-        <div>Scan</div>
-        <div>
-          <SismoConnectButton
-            text="Connect"
-            config={config}
-            auths={[
-              { authType: AuthType.VAULT },
-              { authType: AuthType.TWITTER },
-            ]}
-            claims={[
-              { groupId: "0x6ff8115520098ee543deab1ab900384d" }, // own sismo group, only Daniel atm
-              //{groupId: "0x8b64c959a715c6b10aa8372100071ca7"}  // from demo ENS Domain
-            ]}
-            signature={{
-              message:
-                "I accept to share my medical records with selected Clinical Trail party",
-            }}
-            onResponse={async (response) => {}}
-            onResponseBytes={async (bytes) => {}}
-          />
-        </div>
-      </div>
-
       <div className="w-50 h-50 p-4">
         <h2 className="text-xl font-semibold mb-4 text-left ">
-          Welcome, Vitalik!
+          Welcome, Human!
         </h2>
         <p>
           Your health data at your fingertips while ensuring complete control
@@ -57,7 +35,7 @@ function App() {
         </p>
 
         {/* CBC */}
-        <div className="flex">
+        <div className="flex flex-col items-center p-4">
           <div className="bg-white p-4 rounded-md shadow-md">
             <h3 className="text-lg font-semibold border-b border-gray-300 pb-2 text-left">
               Electrolytes
@@ -147,12 +125,9 @@ function App() {
 
       {/* Tab 2 */}
       <div
-        className={classNames(
-          "bg-white p-4 shadow-md rounded-md mb-4",
-          { 
-            'border-red-200': isAlert === true
-        }
-        )}
+        className={classNames("bg-white p-4 shadow-md rounded-md mb-4", {
+          "border-red-200": isAlert === true,
+        })}
       >
         <h3 className="text-xl font-semibold mb-2">
           Participate in Medical Research and get rewarded
@@ -176,35 +151,21 @@ function App() {
                 Decline
               </button>
               <SismoConnectButton
-                text="Apply for study"
-                callbackUrl="http://localhost:3000/success"
-                // You can also create several auth and claim requests
-                // in the same button
                 config={config}
-                // request multiple proofs of account ownership
-                // (here Vault ownership and Twitter account ownership)
-                auths={[
-                  { authType: AuthType.VAULT },
-                  { authType: AuthType.TWITTER },
-                ]}
-                // request multiple proofs of group membership
-                // (here the groups with id 0x42c768bb8ae79e4c5c05d3b51a4ec74a and 0x8b64c959a715c6b10aa8372100071ca7)
+                auths={[{ authType: AuthType.VAULT }]}
                 claims={[
-                  { groupId: "0x6ff8115520098ee543deab1ab900384d" }, // own sismo group, only Daniel atm
-                  //{groupId: "0x8b64c959a715c6b10aa8372100071ca7"}  // from demo ENS Domain
+                  { groupId: "0x39a1c669293ad8224469a8197d67be7c" }, // Worldcoin
+                  {
+                    groupId: "0x8647f518b0dad075555269ff5a48c362",
+                    value: 600000,
+                    claimType: ClaimType.GTE,
+                  }, // Eth Med RecordType 1
                 ]}
                 signature={{
                   message:
                     "I accept to share my medical records with selected Clinical Trail party",
                 }}
-                onResponse={async (response) => {
-                  //Send the response to your server to verify it
-                  //thanks to the @sismo-core/sismo-connect-server package
-                }}
-                onResponseBytes={async (bytes) => {
-                  //Send the response to your contract to verify it
-                  //thanks to the @sismo-core/sismo-connect-solidity package
-                }}
+                callbackUrl="http://localhost:3001/apply/verify"
               />
             </div>
           </div>
@@ -337,7 +298,7 @@ function App() {
         </Router>
       </div>
 
-      <div class="fixed bottom-0 left-0 z-50 w-full h-16 bg-white border-t border-gray-200">
+      <div className="fixed bottom-0 left-0 z-50 w-full h-16 bg-white border-t border-gray-200">
         <div className="w-full flex flex-row justify-around p-4 bottom-0">
           <div>Home</div>
           <div>
