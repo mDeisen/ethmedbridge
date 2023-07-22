@@ -151,6 +151,7 @@ function App() {
                 Decline
               </button>
               <SismoConnectButton
+                text="Apply for study"
                 config={config}
                 auths={[{ authType: AuthType.VAULT }]}
                 claims={[
