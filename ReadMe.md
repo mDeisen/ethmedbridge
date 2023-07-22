@@ -66,7 +66,16 @@ To run ethmedbridge locally and use it for further development, follow these ste
 2. Doctor offices/hospitals issue zk-gated medical marker NFTs after conducting medical examinations.
 3. Research institutions can use their ethmedbridge account to create data queries and find eligible patients.
 4. Patients can log in to their ethmedbridge wallet to see their NFTs and decide whether to participate in research/clinical trials.
-5. Patients who match the selected queries can choose to share their medical data, participate in the study, and get rewarded or donate to further advance public good funding.
+5. Patients who match the selected queries can choose to share their medical data, participate in the study, and get rewarded or donate to further advance public good funding
+
+## Screenshots
+
+![Desktop - 9](https://github.com/mDeisen/ethmedbridge/assets/36173828/28875635-66aa-4877-ab45-014b506a7823)
+
+![Desktop - 10](https://github.com/mDeisen/ethmedbridge/assets/36173828/697dedcc-fcf2-482e-bbb4-c43392f05d9e)
+
+![Desktop - 11](https://github.com/mDeisen/ethmedbridge/assets/36173828/9899c179-4094-4521-932f-943846bd3f61)
+
 
 ## Contributing
 We welcome contributions to enhance ethmedbridge and make it more robust and user-friendly. If you would like to contribute, please reach out.
