@@ -163,7 +163,7 @@ export default function App() {
                   message:
                     "I accept to share my medical records with selected Clinical Trail party",
                 }}
-                // callbackUrl="http://localhost:3001/apply/verify"
+                // callbackUrl="http://localhost:3000/apply/verify"
                 callbackUrl="/apply/verify"
               />
             </div>
