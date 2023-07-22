@@ -11,11 +11,7 @@ import {
   Issuer,
   RecordOwner,
   RecordType,
-  Record,
-  Approval,
-  ApprovalForAll,
-  OwnershipTransferred,
-  Transfer
+  Record
 } from "../generated/schema"
 
 
@@ -38,8 +34,13 @@ export function handleRecordRegistered(event: RecordRegisteredEvent): void {
 }
 
 export function assignIpfsValuesToRecordType(recordType: RecordType): RecordType {
-  const content = ipfs.cat(recordType.metadataURI);
+  //const content = ipfs.cat(recordType.metadataURI);
+  // debug
+  const content = ipfs.cat(recordType.metadataURI.split("ipfs://")[1]); // Remove IPFS prefix
   if (content === null) {
+    recordType.name = "failedtoretrieve";
+    recordType.description = "failedtoretrieve";
+    recordType.unit = "failedtoretrieve"; 
     return recordType;
   }
   const data = json.fromBytes(content).toObject();
@@ -47,7 +48,7 @@ export function assignIpfsValuesToRecordType(recordType: RecordType): RecordType
   if (data) {
     const name = data.get('name');
     const description = data.get('description');
-    const unit = data.get('unit');
+    const unit = data.get('measurementUnit');
 
     if (name) {
       recordType.name = name.toString();
@@ -100,68 +101,4 @@ export function handleRecordIssued(event: RecordIssuedEvent): void {
   newRecord.blockNumber = event.block.number; 
   newRecord.blockTimestamp = event.block.timestamp;
   newRecord.save()
-}
-
-
-
-export function handleApproval(event: ApprovalEvent): void {
-  let entity = new Approval(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.owner = event.params.owner
-  entity.approved = event.params.approved
-  entity.tokenId = event.params.tokenId
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
-}
-
-export function handleApprovalForAll(event: ApprovalForAllEvent): void {
-  let entity = new ApprovalForAll(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.owner = event.params.owner
-  entity.operator = event.params.operator
-  entity.approved = event.params.approved
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
-}
-
-export function handleOwnershipTransferred(
-  event: OwnershipTransferredEvent
-): void {
-  let entity = new OwnershipTransferred(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.previousOwner = event.params.previousOwner
-  entity.newOwner = event.params.newOwner
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
-}
-
-
-export function handleTransfer(event: TransferEvent): void {
-  let entity = new Transfer(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.from = event.params.from
-  entity.to = event.params.to
-  entity.tokenId = event.params.tokenId
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
 }
