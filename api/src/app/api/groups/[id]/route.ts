@@ -1,15 +1,72 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
-  const { id: resultTypeId } = params;
+import { request, gql } from "graphql-request";
 
-  const response = {
-    status: "success",
-    resultTypeId,
-    results: {
-      "nezzar.eth": '42'
-    }
-      
+// Record schema
+/*
+{
+  id
+  issuer {
+    id
+  }
+  recordOwner {
+    id
+  }
+  recordType {
+    id
+    metadataURI
+  }
+  value
+  blockNumber
+  blockTimestamp
+}
+*/
+
+type RecordResult = {
+  id: string;
+  recordOwner: {
+    id: string;
   };
-  return NextResponse.json(response);
+  value: string;
+};
+
+const query = gql`
+  query getRecords($recordTypeId: String!) {
+    records(where: { recordType: $recordTypeId }) {
+      id
+      recordOwner {
+        id
+      }
+      value
+    }
+  }
+`;
+
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const { id: recordTypeId } = params;
+
+  const { records } = await request<{ records: RecordResult[] }>(
+    `https://api.thegraph.com/subgraphs/name/mdeisen/ethmedbridge`,
+    query,
+    { recordTypeId }
+  );
+
+  const group = records.reduce<Record<string, string>>(
+    (acc, { recordOwner, value }) => {
+      acc[recordOwner.id] = value;
+      return acc;
+    },
+    {}
+  );
+
+  // const response = {
+  //   status: "success",
+  //   recordTypeId,
+  //   group: r,
+  // };
+
+  return NextResponse.json(group);
 }
