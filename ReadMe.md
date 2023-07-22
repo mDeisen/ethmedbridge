@@ -67,4 +67,4 @@ This project is licensed under the [MIT License](https://github.com/medconnect/L
 
 ---
 
-Thank you for your interest in MedConnect! We hope our middleware solution can contribute to the advancement of medical research while ensuring patient data privacy and security. If you have any questions or feedback, please don't hesitate to reach out to our team at [contact@medconnect.com](mailto:contact@medconnect.com). Happy hacking! 🚀
+Thank you for your interest in MedConnect! We hope our middleware solution can contribute to the advancement of medical research while ensuring patient data privacy and security. If you have any questions or feedback, please don't hesitate to reach out to our team at [contact@medconnect.com](mailto:contact@medconnect.com). Happy hacking! 🚀🚀🚀
