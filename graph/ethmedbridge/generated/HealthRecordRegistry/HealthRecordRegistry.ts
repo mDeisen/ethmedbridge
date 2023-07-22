@@ -101,8 +101,8 @@ export class RecordIssued__Params {
     return this._event.parameters[0].value.toAddress();
   }
 
-  get recordId(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
+  get recordId(): i32 {
+    return this._event.parameters[1].value.toI32();
   }
 
   get value(): BigInt {
@@ -127,8 +127,8 @@ export class RecordRegistered__Params {
     this._event = event;
   }
 
-  get recordTypeId(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
+  get recordTypeId(): i32 {
+    return this._event.parameters[0].value.toI32();
   }
 
   get metadataURI(): string {
@@ -492,8 +492,8 @@ export class DisableRecordCall__Inputs {
     this._call = call;
   }
 
-  get _recordId(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
+  get _recordId(): i32 {
+    return this._call.inputValues[0].value.toI32();
   }
 }
 
@@ -546,8 +546,8 @@ export class IssueRecordCall_recordStruct extends ethereum.Tuple {
     return this[0].toAddress();
   }
 
-  get recordTypeId(): BigInt {
-    return this[1].toBigInt();
+  get recordTypeId(): i32 {
+    return this[1].toI32();
   }
 
   get value(): BigInt {
@@ -596,8 +596,8 @@ export class IssueRecordBatchCall_recordsStruct extends ethereum.Tuple {
     return this[0].toAddress();
   }
 
-  get recordTypeId(): BigInt {
-    return this[1].toBigInt();
+  get recordTypeId(): i32 {
+    return this[1].toI32();
   }
 
   get value(): BigInt {
@@ -622,8 +622,8 @@ export class RegisterNewRecordCall__Inputs {
     this._call = call;
   }
 
-  get _newRecordId(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
+  get _newRecordId(): i32 {
+    return this._call.inputValues[0].value.toI32();
   }
 
   get _metadataURI(): string {

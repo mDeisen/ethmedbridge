@@ -84,9 +84,9 @@
       },
       {
         "indexed": true,
-        "internalType": "uint32",
+        "internalType": "uint16",
         "name": "recordId",
-        "type": "uint32"
+        "type": "uint16"
       },
       {
         "indexed": false,
@@ -109,9 +109,9 @@
     "inputs": [
       {
         "indexed": true,
-        "internalType": "uint32",
+        "internalType": "uint16",
         "name": "recordTypeId",
-        "type": "uint32"
+        "type": "uint16"
       },
       {
         "indexed": false,
@@ -188,9 +188,9 @@
   {
     "inputs": [
       {
-        "internalType": "uint32",
+        "internalType": "uint16",
         "name": "_recordId",
-        "type": "uint32"
+        "type": "uint16"
       }
     ],
     "name": "disableRecord",
@@ -251,9 +251,9 @@
             "type": "address"
           },
           {
-            "internalType": "uint32",
+            "internalType": "uint16",
             "name": "recordTypeId",
-            "type": "uint32"
+            "type": "uint16"
           },
           {
             "internalType": "uint64",
@@ -286,9 +286,9 @@
             "type": "address"
           },
           {
-            "internalType": "uint32",
+            "internalType": "uint16",
             "name": "recordTypeId",
-            "type": "uint32"
+            "type": "uint16"
           },
           {
             "internalType": "uint64",
@@ -402,9 +402,9 @@
   {
     "inputs": [
       {
-        "internalType": "uint32",
+        "internalType": "uint16",
         "name": "_newRecordId",
-        "type": "uint32"
+        "type": "uint16"
       },
       {
         "internalType": "string",
