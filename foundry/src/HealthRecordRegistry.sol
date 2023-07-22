@@ -4,6 +4,19 @@ pragma solidity >=0.8.19;
 import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
 import { ERC721 } from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
+struct Record {
+    /// @dev Whether the record is allowed to be issued.
+    bool allowed;
+    /// @dev URI to the metadata of the record.
+    /// Contains: Name, Decription, Image (optional), MeasurementUnit
+    string metadataURI;
+}
+
+struct RecordData {
+    address issuer;
+    uint32 recordTypeId;
+    uint64 value;
+}
 /// @title HealthRecordRegistry
 /// @notice A simple registry to issue health records. (to ERC6551 or EOAs directly)
 /// @dev This contract is used to issue health records to patients. It
@@ -12,19 +25,6 @@ import { ERC721 } from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 /// implementation, access control for issuers & data gouvernance would
 /// be much more complex.
 contract HealthRecordRegistry is Ownable, ERC721 {
-    struct Record {
-        /// @dev Whether the record is allowed to be issued.
-        bool allowed;
-        /// @dev URI to the metadata of the record.
-        /// Contains: Name, Decription, Image (optional), MeasurementUnit
-        string metadataURI;
-    }
-
-    struct RecordData {
-        address issuer;
-        uint32 recordTypeId;
-        uint64 value;
-    }
 
     event RecordRegistered(
         uint32 indexed recordTypeId,
