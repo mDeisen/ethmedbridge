@@ -8,10 +8,6 @@ import {
 
 import { NextResponse } from "next/server";
 
-const sismoConnect = SismoConnect({
-  config,
-});
-
 const auths = [{ authType: AuthType.VAULT }];
 
 const claims = [
@@ -29,6 +25,10 @@ const signature = {
 };
 
 export async function POST(req: Request) {
+  const sismoConnect = SismoConnect({
+    config,
+  });
+
   const sismoConnectResponse = await req.json();
 
   try {

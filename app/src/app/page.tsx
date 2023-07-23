@@ -164,7 +164,7 @@ export default function App() {
                     "I accept to share my medical records with selected Clinical Trail party",
                 }}
                 // callbackUrl="http://localhost:3000/apply/verify"
-                callbackUrl="/apply/verify"
+                callbackUrl="https://ethmedbridge.vercel.app/apply/verify"
               />
             </div>
           </div>
