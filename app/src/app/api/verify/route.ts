@@ -8,13 +8,17 @@ import {
 
 import { NextResponse } from "next/server";
 
+const sismoConnect = SismoConnect({
+  config,
+});
+
 const auths = [{ authType: AuthType.VAULT }];
 
 const claims = [
   { groupId: "0x39a1c669293ad8224469a8197d67be7c" }, // Worldcoin
   {
     groupId: "0x8647f518b0dad075555269ff5a48c362",
-    value: 600000,
+    value: 600_000,
     claimType: ClaimType.GTE,
   }, // Eth Med RecordType 1
 ];
@@ -25,10 +29,6 @@ const signature = {
 };
 
 export async function POST(req: Request) {
-  const sismoConnect = SismoConnect({
-    config,
-  });
-
   const sismoConnectResponse = await req.json();
 
   try {
