@@ -53,7 +53,7 @@ The user can apply to specific studies by proving their personhood as well as th
 The third component can be used to view the available medical data types as well as the measurement distribution for each medical data type and use them to create studies that are gated to people that match the criteria. The researcher can monitor how many people submitted their proofs and reach out to them via XMTP.
 
 ## Public Good Creation
-Through the permissionless and privacy preserving information emission process (ERC 721, future ERC 6551) we create a public good. Medical data becomes quarriable by type (i.e. show me the distribution of all blood pressure measurements from the last 7 days). See here an example of the data structure via the [Graph](https://github.com/mDeisen/ethmedbridge/blob/main/app/public/assets/graph_data.png) and via [Goerliscan](https://goerli.etherscan.io/token/0x5a2EbDEb26aAADBefBaC05AAc21e19e268D3CF6A)
+Through the permissionless and privacy preserving information emission process (ERC 721, future ERC 6551) we create a public good. Medical data becomes queriable by type (i.e. show me the distribution of all blood pressure measurements from the last 7 days). See here an example of the data structure via the [Graph](https://github.com/mDeisen/ethmedbridge/blob/main/app/public/assets/graph_data.png) and via [Goerliscan](https://goerli.etherscan.io/token/0x5a2EbDEb26aAADBefBaC05AAc21e19e268D3CF6A)
 
 
 Privacy concerns: The origin of the data is linked to a doctor, however not the patient itself. We envision that only doctors with sufficiently large submissions can mint to avoid inference to one individual.
