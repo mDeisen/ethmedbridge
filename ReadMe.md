@@ -78,8 +78,9 @@ Privacy concerns: The origin of the data is linked to a doctor, however not the 
 To run ethmedbridge locally and use it for further development, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/mDeisen/ethmedbridge`
-2. Install dependencies: `npm install`
-3. Start the application: `npm start`
+2. Go to the app directory: `cd app`
+3. Install dependencies: `npm install`
+4. Start the application: `npm run dev`
 
 ## Usage (DEMO)
 1. Convince your doctor to use our dApp.
