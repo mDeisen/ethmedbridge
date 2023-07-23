@@ -11,7 +11,7 @@ const OverlayButton = () => {
   return (
     <div>
       <button
-        className="btn btn-accent btn-sm"
+        className="btn bg-emerald-400 hover:bg-emerald-500 btn-sm"
         onClick={toggleOverlay}
       >
         QR

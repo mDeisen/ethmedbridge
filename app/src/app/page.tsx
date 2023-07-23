@@ -17,11 +17,11 @@ import Sparkline from "./components/Sparkline";
  * Basic test page is used to apply for a clinical trial.
  */
 export default function App() {
-  const sparklineData = [4, 4, 3.7, 4, 4, 4.5, 6, 6.4, 3, 5, 4.4];
+  const sparklineData = [4, 4, 3.7, 4, 4, 1.5, 4.5, 6.4, 5, 4.4];
 
   return (
-    <div className="flex flex-col items-center">
-    <div className="max-w-md shadow-lg rounded-lg my-6">
+    <div className="flex flex-col items-center bg-zinc-200">
+    <div className="bg-gray-100 max-w-lg shadow-lg rounded-lg mt-6 mb-16">
     <main className={classNames(styles.main, styles.nopad)}>
     <div className="w-full relative min-h-screen">
       <div className="w-50 h-50 p-4">
@@ -112,11 +112,11 @@ export default function App() {
         </div>
 
         <div className="bg-white p-4 rounded-md shadow-md">
-          <h3 className="text-lg font-semibold border-b border-gray-300 pb-2 text-left">
+          <h3 className="text-lg font-semibold pb-2 text-left">
             RBC Visualization
           </h3>
 
-          <div>
+          <div className="flex flex-col items-center mx-4">
             <Sparkline data={sparklineData} />
           </div>
         </div>
@@ -124,7 +124,7 @@ export default function App() {
 
       {/* Tab 2 */}
       <div
-        className={"bg-gray-100 p-4 shadow-md rounded-md mb-4"}
+        className={"bg-gray-100 p-4 shadow-md rounded-md"}
       >
         <h3 className="text-lg font-semibold mb-2">
           Participate in Medical Research and get rewarded
@@ -272,8 +272,8 @@ export default function App() {
         </div>
       </div>
 
-      <div className="fixed bottom-0 left-0 z-50 w-full h-16 bg-white border-t border-gray-200">
-        <div className="w-full p-4 flex flex-row justify-around bottom-0">
+      <div className="flex flex-col fixed bottom-0 left-0 z-50 w-full h-16 items-center">
+        <div className="max-w-lg w-full p-4 flex flex-row justify-center bottom-0 gap-6 bg-white border-t border-x border-gray-200">
         <button
         className="btn btn-sm"
       >

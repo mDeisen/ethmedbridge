@@ -62,11 +62,5 @@ export async function GET(
     {}
   );
 
-  // const response = {
-  //   status: "success",
-  //   recordTypeId,
-  //   group: r,
-  // };
-
   return NextResponse.json(group);
 }
