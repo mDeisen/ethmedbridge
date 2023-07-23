@@ -61,11 +61,12 @@ Privacy concerns: The origin of the data is linked to a doctor, however not the 
 ## Technologies Used
 - Blockchain (Goerli)
 - The graph (to create queriable entities from the relevant smart contract events)
-- zk-Proofs (via Sismo)
+- zk-Proofs (generated with Sismo) [Group for Worldcoin](https://github.com/sismo-core/sismo-hub/blob/main/group-generators/generators/worldcoinproofofhumanhood-eth/index.ts) | [Group for medical measurement](https://github.com/sismo-core/sismo-hub/blob/main/group-generators/generators/ethmedbridge-recordtype-1/index.ts)
 - Smart Contracts (Solidity)
 - Web3.js
 - XMTP to tranfer the ZKPs to the research institution
-- Worldcoin for proof of humanity
+- Worldcoin for proof of humanity 
+- Auth0 to authenticate with Worldcoin
 
 ## Tools we used
 - Figma
